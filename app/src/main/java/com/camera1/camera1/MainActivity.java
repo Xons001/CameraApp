@@ -20,11 +20,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     String mCurrentPhotoPath;
-    static ImageView nImageView;
+    ImageView nImageView;
 
 
     @Override
@@ -63,13 +64,13 @@ public class MainActivity extends AppCompatActivity {
             nImageView.setImageBitmap(imageBitmap);
 
             // guardar a disc
-             try{
-                FileOutputStream out =  openFileOutput("a.jpg", MODE_APPEND);
+            try {
+                FileOutputStream out = openFileOutput("a.jpg", MODE_PRIVATE);
                 imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
                 out.close();
-                Log.v( "TAG OK", "Arxiu ok");
-            }catch (Exception e){
-                Log.v( "FILE ERROR", "Error escrivint arxiu");
+                Log.v("TAG OK", "Arxiu ok");
+            } catch (Exception e) {
+                Log.v("FILE ERROR", "Error escrivint arxiu");
                 e.printStackTrace();
             }
         }
